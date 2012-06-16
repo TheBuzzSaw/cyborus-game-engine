@@ -21,7 +21,7 @@ namespace CGE
         }
     }
 
-    char* fileToBuffer(const char* inFile)
+    char* fileToBuffer(const char* inFile, size_t* inLength)
     {
         FILE* f = fopen(inFile, "r");
 
@@ -30,6 +30,7 @@ namespace CGE
         fseek(f, 0, SEEK_END);
 
         size_t length = ftell(f);
+        if (inLength) *inLength = length;
 
         fseek(f, 0, SEEK_SET);
 
